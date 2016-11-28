@@ -1,0 +1,13 @@
+class Solution {
+public:
+ int arrangeCoins(int n) {
+     long right = n, left = 0, mid, sum; //long type prevent number out of range
+     while(left <= right){
+         mid = (right - left) / 2 + left;
+         sum = mid * (mid + 1) / 2;
+         if(sum <= n) left = mid + 1; //left must bigger than the accurate solutions.
+         else right = mid - 1; // if it's bigger than accurate solutions,  the left boundary won't change
+     }
+     return left - 1;
+ }
+};

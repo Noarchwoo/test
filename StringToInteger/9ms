@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int myAtoi(string str) {
+        string::size_type i, len = str.size();
+        int flag = 1, res = 0;
+        if(len == 0) return 0;
+        for(i = 0; i < len; i++){
+            if(str[i] == ' ') continue;
+            else break;
+        }
+        if(str[i] == '+'){
+            i++;
+        }else if(str[i] == '-'){
+            flag = -1;
+            i++;
+        }
+        for(; i<len; i++){
+            if(str[i] <= '9' && str[i] >= '0'){
+                if(flag == 1 && (res*10.0 + (str[i] - '0')) > 2147483647 ) return INT_MAX;
+                else if(flag == -1 && (res*10.0 + (str[i] - '0')) > 2147483648) return INT_MIN;
+                res = res * 10 + (str[i] - '0'); 
+            }else break;
+        }
+        return flag * res;
+
+    }
+};

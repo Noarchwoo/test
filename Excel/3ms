@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int titleToNumber(string s) {
+        string::size_type i, len = s.size();
+        int sum = 0, cur;
+        for(i =0; i < len; i++){
+            cur = s[i] - 'A' + 1;
+            sum = 26 * sum + cur;
+        }
+        return sum;
+    }
+};

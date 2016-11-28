@@ -1,0 +1,24 @@
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        string* tmp = new string[numRows];
+        int line = 0, step = 1;
+		string::size_type i, len = s.size();
+		if(len == 1 || numRows == 1) return s;   //this is needed to consider.
+        for(i = 0; i < len; i++){
+            tmp[line] += s[i];
+            if(line == numRows -1){                  //random write it with 3 
+                step = -1;
+            }
+			if(line == 0){
+                step = 1;
+            }
+            line += step; 
+        }
+        for(int j = 1; j < numRows; j++){
+            tmp[0] += tmp[j];
+        }
+        return tmp[0];
+        
+    }
+};
